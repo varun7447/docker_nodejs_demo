@@ -47,5 +47,7 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
         printf '[{"name":"${{ env.ECR_REPOSITORY }}","imageUri":"%s"}]' $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG > imagedefinitions.json
-        aws s3 cp ./imagedefinitions.json s3://${{ env.BUCKET_NAME }}/
+        zip -r imagedefinitions.zip imagedefinitions.json
+        aws s3 cp ./imagedefinitions.zip s3://${{ env.BUCKET_NAME }}/
+        
           
