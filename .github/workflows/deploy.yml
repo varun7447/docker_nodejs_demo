@@ -49,4 +49,4 @@ jobs:
         printf '[{"name":"${{ env.ECR_REPOSITORY }}","imageUri":"%s"}]' $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG > imagedefinitions.json
     - name:  Copy imagedefinitions to s3
       run: |
-          aws s3 cp ./imagedefinitions.json s3://${{ env.BUCKET_NAME }}/
+          aws s3 cp ./imagedefinitions.json s3://"${{ env.BUCKET_NAME }}"/
